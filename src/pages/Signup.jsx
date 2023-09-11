@@ -17,7 +17,6 @@ import { useEffect } from "react";
 import ReactLoading from "react-loading";
 import { useTranslation } from "react-i18next";
 import { t } from "i18next";
- 
 
 const Signup = () => {
   const [showLoading, setshowLoading] = useState(false);
@@ -38,7 +37,7 @@ const Signup = () => {
 
   useEffect(() => {
     if (user) {
-      if (!user.emailVerified||user.emailVerified) {
+      if (!user.emailVerified || user.emailVerified) {
         navigate("/");
       }
     }
@@ -47,7 +46,7 @@ const Signup = () => {
   const signUpBTN = async (eo) => {
     eo.preventDefault();
     setshowLoading(true);
-  await  createUserWithEmailAndPassword(auth, email, password)
+    await createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // Signed in
         sendEmailVerification(auth.currentUser).then(() => {
@@ -68,14 +67,13 @@ const Signup = () => {
       })
       .catch((error) => {
         const errorCode = error.code;
-        console.log(errorCode)
         sethasError(true);
 
         switch (errorCode) {
           case "auth/invalid-email":
             setfirebaseError(t("WrongEmail-R"));
             break;
-            case "auth/email-already-in-use":
+          case "auth/email-already-in-use":
             setfirebaseError(t("email-already-in-use"));
             break;
 
@@ -108,26 +106,25 @@ const Signup = () => {
     return <Loading />;
   }
 
-
-
   if (!user) {
     return (
       <>
         <Helmet>
-          <title>Signup</title>
+          <title>{t("Sign-up")}</title>
         </Helmet>
         <Header />
 
         <main>
-          <form dir="auto" style={{alignItems:"center",maxWidth:"300px"}}>
+          <form dir="auto" style={{ alignItems: "center", maxWidth: "300px" }}>
             <p style={{ fontSize: "23px", marginBottom: "22px" }}>
-              {i18n.language===("ar")&&"انشاء حساب جديد  "}
-              {i18n.language===("en")&&"Create a new account "}
-              {i18n.language===("fr")&&"Créer un nouveau compte "}
+              {i18n.language === "ar" && "انشاء حساب جديد  "}
+              {i18n.language === "en" && "Create a new account "}
+              {i18n.language === "fr" && "Créer un nouveau compte "}
               <span>🧡</span>{" "}
             </p>
 
-            <input style={{width:"100%"}}
+            <input
+              style={{ width: "100%" }}
               onChange={(eo) => {
                 setuserName(eo.target.value);
               }}
@@ -136,7 +133,8 @@ const Signup = () => {
               type="text"
             />
 
-            <input style={{width:"100%"}}
+            <input
+              style={{ width: "100%" }}
               onChange={(eo) => {
                 setemail(eo.target.value);
               }}
@@ -145,7 +143,8 @@ const Signup = () => {
               type="email"
             />
 
-            <input style={{width:"100%"}}
+            <input
+              style={{ width: "100%" }}
               onChange={(eo) => {
                 setpassword(eo.target.value);
               }}
@@ -154,7 +153,7 @@ const Signup = () => {
               type="password"
             />
 
-            <button 
+            <button
               onClick={(eo) => {
                 signUpBTN(eo);
               }}
@@ -173,15 +172,17 @@ const Signup = () => {
               )}
             </button>
             <p className="account">
-              {i18n.language===("ar")&&"بالفعل لديك حساب قم بي "}
-              {i18n.language===("en")&&"You already have an account "}
-              {i18n.language===("fr")&&"Avez vous déjà un compte "}
-              <Link to="/signin">
-                 {t("sign-in")}
-                 </Link>
+              {i18n.language === "ar" && "بالفعل لديك حساب قم بي "}
+              {i18n.language === "en" && "You already have an account "}
+              {i18n.language === "fr" && "Avez vous déjà un compte "}
+              <Link to="/signin">{t("sign-in")}</Link>
             </p>
           </form>
-          {hasError && <h6 dir="auto" className="mt">{firebaseError}</h6>}
+          {hasError && (
+            <h6 dir="auto" className="mt">
+              {firebaseError}
+            </h6>
+          )}
         </main>
         <Footer />
       </>

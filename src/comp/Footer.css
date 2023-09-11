@@ -1,33 +1,23 @@
-.myfooter footer{
+.myfooter footer {
   background-color: #1b1b1b;
   padding: 20px 0;
   text-align: center;
   font-size: 18px;
 }
 
-
-
-.myfooter .ali{
+.myfooter .ali {
   background-color: teal;
 }
 
-.myfooter .my-site{
+.myfooter .my-name {
   color: cyan;
-    transition: all .2s linear;
-    font-weight: 600;
-}
-.myfooter .my-site:hover{
-  border-bottom: 1px solid cyan;
+  transition: all 0.2s linear;
+  font-weight: 600;
+  padding: 0 3px;
+  animation: none;
 }
 
-.myfooter .fa-heart{
+.myfooter .fa-heart {
   font-size: 22px !important;
   margin-left: 5px;
 }
-
-
-
-
- 
-
-
